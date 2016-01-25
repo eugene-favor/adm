@@ -1,1 +1,1 @@
-# adm
+#### My System Administration and SCM hints
