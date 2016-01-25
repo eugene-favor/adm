@@ -1,4 +1,4 @@
-** Automatic mount in /etc/fstab **
+**Automatic mount in /etc/fstab**
 
 cat /etc/fstab
 
