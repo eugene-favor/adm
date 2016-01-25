@@ -13,11 +13,18 @@ sda              13.00     0.00  367.00    0.00 151893.33     0.00   413.88     
 ```
 
 **rrqm/s wrqm/s** are read and write requests merged per second
+
 **r/s, w/s** read and write requests to the device
+
 **rsec/s, wsec/s** amount of sectors read and written from the device
+
 **avgrq-sz** size of each request
+
 **avgqu-sz** the average queue length of requests to the device
+
 **await** how long requests took to be serviced including their time in the queue
+
 **svctm** how long requests took to be serviced by the device after they left the queue
+
 **%util** Utilization, in more detail, is the service time in ms * total IO operations / 1000 ms. This gives the percentage of how busy the single disk was during the given time slice.
 
