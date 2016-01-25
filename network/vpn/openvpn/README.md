@@ -17,9 +17,12 @@ VPN должен быть в состоянии обрабатывать не-IP
 
 Internet Assigned Numbers Authority (IANA) зарезервировала следующие три блока адресного пространства IP для частных сетей (описанные в RFC 1918):
 
+```
 10.0.0.0 10.255.255.255 (префикс 10/8)
 172.16.0.0 172.31.255.255 (префикс 172.16/12)
 192.168.0.0 192.168.255.255 (префикс 192.168/16)
+```
+
 Хотя адреса из этих блоков, как правило, могут без проблем использоваться в конфигурациях VPN, важно выбрать адреса, которые минимизируют вероятность конфликтов IP-адресов или подсетей между собой. Виды конфликтов, которые необходимо предотвратить:
 
 конфликты разных сайтов, подключенных к VPN, которые используют одинаковую нумерацию своих сетей, или
@@ -65,22 +68,34 @@ init-config
 
 Далее инициализируем PKI. На Linux/BSD/Unix:
 
+```
 . ./vars
 ./clean-all
 ./build-ca
+```
+
 В Windows:
 
+```
 vars
 clean-all
 build-ca
+```
+
 Последняя команда (build-ca) создаст сертификат и ключ центра сертификации (CA), вызвав интерактивную команду openssl:
 
+```
 ai:easy-rsa # ./build-ca
 Generating a 1024 bit RSA private key
+
+
 ............++++++
 ...........++++++
 writing new private key to 'ca.key'
 -----
+```
+
+```
 You are about to be asked to enter information that will be incorporated
 into your certificate request.
 What you are about to enter is what is called a Distinguished Name or a DN.
@@ -95,30 +110,44 @@ Organization Name (eg, company) [OpenVPN-TEST]:
 Organizational Unit Name (eg, section) []:
 Common Name (eg, your name or your server's hostname) []:OpenVPN-CA
 Email Address [me@myhost.mydomain]:
+```
+
 Обратите внимание, что в указанной выше последовательности большинство запрошенных параметров установлены в значения по умолчанию, взятые из файлов vars или vars.bat. Common name -- единственный параметр, который должен быть явно указан. В примере выше я использовал "OpenVPN-CA".
 
 Генерация сертификата и ключа для сервера
 
 Далее мы будем генерировать сертификат и закрытый ключ для сервера. На Linux/BSD/Unix:
 
+```
 ./build-key-server server
+```
+
 В Windows:
 
+```
 build-key-server server
+```
+
 Как и на предыдущем шаге, большинство параметров могут быть оставлены в значениях по умолчанию. Когда будет запрошен Common name введите "server". Два других запроса требуют положительных ответов, «Sign the certificate? (Подписать сертификат?) [y/n]" и "1 out of 1 certificate requests certified, commit? (заверен 1 из 1 запросов на сертификацию, фиксировать?) [y/n]".
 
 Создание сертификатов и ключей для 3-х клиентов
 
 Процесс создания клиентских сертификатов очень похож на предыдущий шаг. На Linux/BSD/Unix:
 
+```
 ./build-key client1
 ./build-key client2
 ./build-key client3
+
+```
 В Windows:
 
+```
 build-key client1
 build-key client2
 build-key client3
+```
+
 Замените использованный выше скрипт на build-key-pass если вы хотите защитить паролем ключи клиента .
 
 Помните, что для каждого клиента необходимо обязательно ввести соответствующий Common name в ответ на запрос, то есть "client1", "client2", или "client3". Всегда используйте уникальные common name для каждого клиента.
@@ -127,18 +156,26 @@ build-key client3
 
 Для сервера OpenVPN необходимо создать параметры Diffie Hellman'а. На Linux/BSD/Unix:
 
+```
 ./build-dh
+```
 В Windows:
-
+```
 build-dh
+```
 Вывод:
 
+```
 ai:easy-rsa # ./build-dh
 Generating DH parameters, 1024 bit long safe prime, generator 2
 This is going to take a long time
 .................+...........................................
 ...................+.............+.................+.........
 ......................................
+
+```
+
+
 Основные файлы
 
 Теперь мы найдем наши вновь созданные ключи и сертификаты в подкаталоге keys. Вот разъяснение соответствующих файлов:
