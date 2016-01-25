@@ -1,13 +1,13 @@
-###Add user
+####Add user
 
 sudo useradd --shell=/bin/bash --user-group --groups=sudo --create-home vasja.pupkin
 
-####or
+#####or
 
 useradd -g vasja.pupkin.custom-group -c"Vasja Pupkin" -s /bin/bash -m vasja.pupkin
 
 
-###Add user to group
+####Add user to group
 
 sudo usermod -a -G vasja.pupkin,vasja.pupkin.custom-group,sudo vasja.pupkin
 
