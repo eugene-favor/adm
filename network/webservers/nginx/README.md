@@ -32,11 +32,11 @@ server {
 
 ```
 server {
-         listen 94.30.220.88:443 ssl;
-         ssl_certificate /etc/nginx/ssl/1100ad.ambergames.com.budle.crt;
-         ssl_certificate_key /etc/nginx/ssl/1100ad.ambergames.com.key;
+         listen 11.22.33.44:443 ssl;
+         ssl_certificate /etc/nginx/ssl/somesubdomain.somedomain.com.budle.crt;
+         ssl_certificate_key /etc/nginx/ssl/somesubdomain.somedomain.com.com.key;
  
-         server_name support.ambergames.com;
+         server_name somesubdomain.somedomain.com;
  
          client_max_body_size 101M;
  
@@ -44,7 +44,7 @@ server {
          keepalive_requests 75;
  
          location / {
-                 proxy_pass https://91.237.98.112:443;
+                 proxy_pass https://22.33.44.55:443;
  
                  proxy_set_header Host $host;
                  proxy_set_header X-Real-IP $remote_addr;
