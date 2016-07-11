@@ -2,7 +2,7 @@
 Execute query from command line from file
 
 ```
-psql -U metrics -d metrics -h 127.0.0.1 -f gamesite_spo.sql -W
+psql -U some_user -d some_database -h 127.0.0.1 -f some_table.sql -W
 
 ```
 

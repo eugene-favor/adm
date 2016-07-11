@@ -1,5 +1,14 @@
 Урезаем старые данные
 
+и запускаем из консоли
+
+```
+
+
+```
+
+
+
 ```
 CREATE TABLE some_table_new (LIKE some_table);
 INSERT INTO some_table_new (SELECT * FROM some_table WHERE date_time > '2014-12-31 23:59:59');
