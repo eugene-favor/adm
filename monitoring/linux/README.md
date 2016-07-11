@@ -93,3 +93,11 @@ smartctl -i /dev/sda
 
 
 For me not work for hardware raid
+
+Get used memory for one process (postgres for example)
+
+I use PSS to get proporcional usage of shared library by this process
+
+```
+ps -axu | egrep 'postgres' | grep -v 'iccube' | grep -v 'grep' | awk '//{ print $2}' | sed 's/\(.*\)/\/proc\/\1\/smaps/g' | xargs cat | grep Pss | awk '// {sum += $2} END {print sum/1024/1024}'
+```
