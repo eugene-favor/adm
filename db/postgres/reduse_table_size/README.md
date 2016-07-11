@@ -3,11 +3,8 @@
 и запускаем из консоли
 
 ```
-
-
+psql -U some_user -d some_database -h 127.0.0.1 -f some_table.sql -W
 ```
-
-
 
 ```
 CREATE TABLE some_table_new (LIKE some_table);
