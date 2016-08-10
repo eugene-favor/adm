@@ -17,3 +17,15 @@ ip addr del 192.168.9.101/32 dev eth0
 ```
 ip addr show
 ```
+
+**Up interface**
+
+```
+ifconfig enp0s8 up
+```
+
+OR
+
+```
+ifup enp0s8
+```
