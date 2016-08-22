@@ -25,8 +25,9 @@ full_backup() {
         echo "cleaning done!"
         innobackupex $ARGS $BACKUP_DIR/FULL
         date
-        echo "backup done!, now uncompressing the files..."
-        for bf in `find $BACKUP_DIR/FULL -iname "*\.qp"`; do qpress -d $bf $(dirname $bf) ;echo "processing" $bf; rm $bf; done
+#        echo "backup done!, now uncompressing the files..."
+        echo "backup done!..."
+#        for bf in `find $BACKUP_DIR/FULL -iname "*\.qp"`; do qpress -d $bf $(dirname $bf) ;echo "processing" $bf; rm $bf; done
         date
         echo "uncompressing done!, preparing the backup for restore..."
         innobackupex --apply-log --redo-only $BACKUP_DIR/FULL
@@ -57,8 +58,9 @@ incremental_backup()
         fi
         date
         echo $NUMBER > $BACKUP_DIR/last_incremental_number
-        echo "incremental $NUMBER done!, now uncompressing the files..."
-        for bf in `find $BACKUP_DIR/inc$NUMBER -iname "*\.qp"`; do qpress -d $bf $(dirname $bf) ;echo "processing" $bf; rm $bf; done
+#        echo "incremental $NUMBER done!, now uncompressing the files..."
+        echo "incremental $NUMBER done!"
+#        for bf in `find $BACKUP_DIR/inc$NUMBER -iname "*\.qp"`; do qpress -d $bf $(dirname $bf) ;echo "processing" $bf; rm $bf; done
         date
         echo "uncompressing done!, the preparation will be made when the restore is needed"
 
@@ -111,11 +113,12 @@ restore()
 #######################################
 #######################################
 
-BACKUP_DIR=/tmp/backup
+BACKUP_DIR=/var/lib/backup/mysql
 DATA_DIR=/var/lib/mysql
-USER_ARGS=" --user=root --password=password"
+USER_ARGS=" --user=root --password=vafli45"
 
-ARGS="--rsync $USER_ARGS --no-timestamp --compress --compress-threads=4"
+#ARGS="--rsync $USER_ARGS --no-timestamp --compress --compress-threads=4"
+ARGS="--rsync $USER_ARGS --no-timestamp"
 
 if [ $# -eq 0 ]
 then
