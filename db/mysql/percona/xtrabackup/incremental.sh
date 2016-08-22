@@ -115,7 +115,7 @@ restore()
 
 BACKUP_DIR=/var/lib/backup/mysql
 DATA_DIR=/var/lib/mysql
-USER_ARGS=" --user=root --password=vafli45"
+USER_ARGS=" --user=root --password=qwerty123"
 
 #ARGS="--rsync $USER_ARGS --no-timestamp --compress --compress-threads=4"
 ARGS="--rsync $USER_ARGS --no-timestamp"
