@@ -76,7 +76,10 @@ restore()
             esac
         done
 
+
         echo "cross your fingers :)"
+        echo "stop mysql service "
+        service mysql stop
         date
         echo "doing restore..."
         #innobackupex --apply-log --redo-only $BACKUP_DIR/FULL
@@ -107,6 +110,8 @@ restore()
 
         chown -R mysql:mysql $DATA_DIR
 
+        echo "start mysql service "
+        service mysql start
 }
 
 #######################################
