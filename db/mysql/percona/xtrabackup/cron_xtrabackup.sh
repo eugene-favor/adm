@@ -66,7 +66,7 @@ incremental_backup()
         date
 #        echo "uncompressing done!, the preparation will be made when the restore is needed"
 
-        rsync -av --progress --del $BACKUP_DIR/ $BACKUP_SERVER:/var/lib/backups/db/rbkgames/week_$(date  +%V)/
+        rsync -av --progress --del $BACKUP_DIR/ $BACKUP_SERVER:/var/lib/backups/db/somedir/week_$(date  +%V)/
 }
 
 restore()
