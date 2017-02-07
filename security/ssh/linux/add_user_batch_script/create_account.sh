@@ -18,10 +18,9 @@ function create_account()
 
         if [[ "$REPLY" == "y" || "$REPLY" == "Y" ]]; then
             echo "Account ${USERNAME} creation on server ${SERVER}"
-
             scp create_account_bootstrap.sh ${USERNAME}.pub ${ADMIN_LOGIN}@${SERVER_IP}:/home/${ADMIN_LOGIN}/
-
             ssh -t ${ADMIN_LOGIN}@${SERVER_IP} sudo /home/${ADMIN_LOGIN}/create_account_bootstrap.sh ${USERNAME}
+            ssh -t ${ADMIN_LOGIN}@${SERVER_IP} rm /home/${ADMIN_LOGIN}/create_account_bootstrap.sh
         else
             echo -n "Abort ${USERNAME} creation on server ${SERVER}"
         fi
