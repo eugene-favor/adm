@@ -90,6 +90,31 @@ RewriteRule ^index.php main.php [R]
 
 ```
 
+```
+RewriteBase /
+
+# Запрос: http://example.com/news/2010/?page=2
+# На входе RewriteRule: "news/2010/"
+RewriteRule ^news/(.*)$ index.php?act=news&what=$1
+# После преобразования: "news/2010/" -> "index.php"
+# Значение %{QUERY_STRING}: "page=2" -> "act=news&what=2010/"
+
+
+RewriteBase /
+
+# Запрос: http://example.com/news/2010/?page=2
+# На входе RewriteRule: "news/2010/"
+RewriteRule ^news/(.*)$ index.php?act=news&what=$1 [QSA]
+# После преобразования: "news/2010/" -> "index.php"
+# Значение %{QUERY_STRING}: "page=2" -> "act=news&what=2010/&page=2"
+```
+
+Если же mod_rewrite используется в <VirtualHost>, он будет работать по-другому:
+В <VirtualHost> в RewriteRule попадает весь путь запроса, начиная от первого слеша, заканчивая началом параметров GET: «http://example.com/some/news/category/post.html?comments_page=3» -> "/news/category/post.html". Эта строка всегда начинается со /.
+Второй аргумент RewriteRule также необходимо начинать со /, иначе будет «Bad Request».
+RewriteBase не имеет смысла.
+Проход правил происходит только один раз. Флаг [L] действительно заканчивает обработку всех правил, описанных в <VirtualHost>, без каких-либо последующих итераций.
+
 При составлении более-менее сложных конфигураций mod_rewrite важно понимать, что изменение запроса не заканчивается на последнем RewriteRule. После того, как сработало последнее правило RewriteRule и был добавлен RewriteBase, mod_rewrite смотрит, изменился запрос или нет. Если запрос изменился, его обработка начинается заново с начала .htaccess.
 
 LogLevel означает, что для всех модулей уровень ошибок warn и только для модуля rewrite — trace4
