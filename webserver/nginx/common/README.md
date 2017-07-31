@@ -38,3 +38,27 @@ server {
 ```
 
 The open_file_cache_errors directive prevents writing an error message if a file is not found. This is not necessary here since missing files are correctly handled.
+
+иногда можно встретить вариант с несколькими if:
+
+```
+
+if ($arg_one = "one") {
+    set $var_two "two";
+}
+
+if ($arg_one = "three") {
+    set $var_two "four";
+}
+
+```
+
+Вы можете это сделать с помощью map:
+
+```
+map $arg_one $var_two {
+    "one"    "two";
+    "three"  "four";
+}
+
+```
